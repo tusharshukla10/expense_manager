@@ -1,12 +1,23 @@
+   
+
+
+
 """This module defines the Expense class, which represents an individual expense with a title, amount, and category."""
 class Expense:
 
     """Class to represent an individual expense."""
 
     def __init__(self, title, amount, category):
+        """Initialize an Expense object with title, amount, and category."""
+        if title=="" or category=="":
+            raise ValueError("Title and category should not be empty")
         self.__title=title
+        self.__category=category  
+        if amount<=0:
+            raise ValueError("Amount should be greater than 0")
         self.__amount=amount
-        self.__category=category
+
+    
 
     
     def get_amount(self):

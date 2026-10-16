@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div>
+            <p class="welcome">Welcome back 👋</p>
+            <h1>Expense Manager</h1>
+            <p class="subtitle">
+                Track your spending and manage your money easily.
+            </p>
+            <button id="logoutBtn" type="button">Logout</button>
+        </div>
+        <div class="header-icon">💰</div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section class="summary">
+        <div class="summary-card total-card">
+            <div class="card-icon">💰</div>
+            <div>
+                <p>Total Expense</p>
+                <h2 id="totalAmount">₹0</h2>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="card-icon">📊</div>
+            <div>
+                <p>Total Transactions</p>
+                <h2 id="expenseCount">0</h2>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="card-icon">🏷️</div>
+            <div>
+                <p>Categories</p>
+                <h2 id="categoryCount">0</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN GRID -->
+    <div class="main-grid">
+
+        <!-- ADD EXPENSE -->
+        <section class="add-expense card">
+            <div class="section-heading">
+                <div>
+                    <h2>➕ Add Expense</h2>
+                    <p>Record a new expense</p>
+                </div>
+            </div>
+
+            <form id="expenseForm">
+                <div class="input-group">
+                    <label for="title">Expense Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="e.g. Grocery shopping"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="amount">Amount</label>
+                    <div class="amount-input">
+                        <span>₹</span>
+                        <input
+                            type="number"
+                            id="amount"
+                            placeholder="Enter amount"
+                            min="1"
+                            step="0.01"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="category">Category</label>
+                    <input
+                        type="text"
+                        id="category"
+                        placeholder="e.g. Food, Travel, Shopping"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="add-btn">
+                    <span>＋</span>
+                    Add Expense
+                </button>
+            </form>
+        </section>
+
+        <!-- EXPENSE LIST -->
+        <section class="expenses card">
+            <div class="section-heading">
+                <div>
+                    <h2>💳 My Expenses</h2>
+                    <p>View and manage your transactions</p>
+                </div>
+            </div>
+
+            <div class="expense-tools">
+                <input
+                    type="text"
+                    id="searchExpense"
+                    placeholder="🔍 Search expenses..."
+                >
+
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+
+            <div id="expenseList"></div>
+        </section>
+    </div>
+
+    <!-- QUICK STATS -->
+    <section class="quick-stats card">
+        <div class="section-heading">
+            <div>
+                <h2>📈 Spending Overview</h2>
+                <p>Keep an eye on your spending habits</p>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-icon">🍔</span>
+                <div>
+                    <p>Food</p>
+                    <strong id="foodTotal">₹0</strong>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-icon">🚗</span>
+                <div>
+                    <p>Travel</p>
+                    <strong id="travelTotal">₹0</strong>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-icon">🛍️</span>
+                <div>
+                    <p>Shopping</p>
+                    <strong id="shoppingTotal">₹0</strong>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-icon">📦</span>
+                <div>
+                    <p>Other</p>
+                    <strong id="otherTotal">₹0</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Expense Manager • Manage your money wisely 💙</p>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

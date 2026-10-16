@@ -1,98 +1,150 @@
+import json
+import os
 
-"""Manage and organize expenses."""
+from expenses import Expense
+
+
 class ExpenseManager:
 
-    """Class to manage a list of expenses."""
     def __init__(self):
-        self.expenses=[]
+        self.expenses = []
 
+
+    def load_expenses(self):
+
+        file_path = os.path.join(
+            os.path.dirname(__file__),
+            "expenses.json"
+        )
+
+        with open(file_path, "r") as file:
+            data = json.load(file)
+
+        for item in data:
+
+            expense = Expense(
+                item["title"],
+                item["amount"],
+                item["category"]
+            )
+
+            self.expenses.append(expense)
 
 
     def add_expense(self, expense):
-        """Add a new expense to the list."""
+
         self.expenses.append(expense)
 
+
     def get_expenses(self):
-        """Get the list of all expenses."""
+
         return self.expenses
 
 
-    def get__amount(self):
+    def delete_expense(self, title):
 
-        """Get the amount of the expense."""
-        return self.__amount
+        for expense in self.expenses:
 
+            expense_title, category = expense.get_details()
 
-    def set__amount(self,amount):
+            if title == expense_title:
 
-        """Set the amount of the expense."""
-        if amount<=0:
-            return "Amount should be greater than 0"
-        self.__amount=amount
-        return "amount update successfully"
+                self.expenses.remove(expense)
 
+                return "Expense deleted successfully"
 
-    def get_details(self):
-
-        """Get the title and category of the expense."""
-        return self.__title, self.__category
-
-    def set_details(self,title,category):
-
-        """Set the title and category of the expense."""
-        if title=="" or category=="":
-            return "Title and category should not be empty"
-        self.__title=title    
-        self.__category=category
-        return "title and category update successfully"
-    
-    
+        return "Expense not found"
 
 
-    def show_expenses(self):
+    # ================= UPDATE =================
 
-        """Display all the expenses."""
-        for i in self.expenses:
-            title, category = i.get_details()
-            print(title,i.get_amount(),category)
+    def update_expense(
+        self,
+        old_title,
+        new_title,
+        new_amount,
+        new_category
+    ):
+
+        for expense in self.expenses:
+
+            title, category = expense.get_details()
+
+            if title == old_title:
+
+                result = expense.set_amount(new_amount)
+
+                if result != "amount update successfully":
+                    return result
+
+
+                result = expense.set_details(
+                    new_title,
+                    new_category
+                )
+
+                if result != "title and category update successfully":
+                    return result
+
+
+                return "Expense updated successfully"
+
+
+        return "Expense not found"
+
+
+    def search_expense(self, title):
+
+        for expense in self.expenses:
+
+            expense_title, category = expense.get_details()
+
+            if title == expense_title:
+
+                return (
+                    f"Expense found: {expense_title}, "
+                    f"Amount: {expense.get_amount()}, "
+                    f"Category: {category}"
+                )
+
+        return "Expense not found"
+
 
     def total_expense(self):
 
-        """Calculate the total expense amount."""
-        total=0
-        for i in self.expenses:
-            total+=i.get_amount()
-        return f"Total expense: {total}"
+        total = 0
+
+        for expense in self.expenses:
+
+            total += expense.get_amount()
+
+        return total
 
 
-    def delete_expense(self,title):
-        """Delete an existing expense using its title."""
-        for i, expense in enumerate(self.expenses):
-            if title==expense.get_details()[0]:
-                self.expenses.pop(i)
-                return "Expense deleted successfully"
-        return "Expense not found"
-    def update_expense(self,title):
+    def save_expenses(self):
 
-        """Update an existing expense using its title."""
+        data = []
 
-        try:
-            for i,exp in enumerate(self.expenses):
-                if title==exp.get_details()[0]:
-                    new_title=input("enter new title: ")
-                    new_category=input("enter new category: ")
-                    new_amount=int(input("enter new amount: ")) 
-                    result=self.expenses[i].set_amount(new_amount)
-                    
-                    if result == "amount update successfully":
-                        details=self.expenses[i].set_details(new_title, new_category)
-                        if details == "title and category update successfully":
-                            return "Expense updated successfully"
-                        return details
-                    return result  
-        except ValueError:
-               return "Invalid input. Please enter a valid amount"
-        return "Expense not found"
+        for expense in self.expenses:
+
+            title, category = expense.get_details()
+
+            data.append({
+                "title": title,
+                "amount": expense.get_amount(),
+                "category": category
+            })
 
 
+        file_path = os.path.join(
+            os.path.dirname(__file__),
+            "expenses.json"
+        )
 
+        with open(file_path, "w") as file:
+
+            json.dump(
+                data,
+                file,
+                indent=4
+            )

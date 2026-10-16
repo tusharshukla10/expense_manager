@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 30px;
+}
+
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.welcome {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+
+h1 {
+    font-size: 35px;
+}
+
+
+.subtitle {
+    color: #777;
+    margin-top: 8px;
+}
+
+
+.header-icon {
+    font-size: 50px;
+}
+
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+.summary-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.card-icon {
+    font-size: 30px;
+}
+
+
+.summary-card p {
+    color: #777;
+}
+
+
+.summary-card h2 {
+    margin-top: 5px;
+}
+
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+}
+
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+
+.section-heading p {
+    color: #777;
+    margin-top: 5px;
+}
+
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+
+.input-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+
+input,
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+
+.amount-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+
+.amount-input span {
+    padding: 11px;
+    background: #f1f1f1;
+}
+
+
+.amount-input input {
+    border: none;
+}
+
+
+button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: rgb(211, 13, 13);
+}
+
+
+.add-btn {
+    width: 100%;
+    background: #333;
+    font-size: 15px;
+}
+
+
+.expense-tools {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #f4f6f8;
+    border-radius: 7px;
+}
+
+
+.expense-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.expense-info strong {
+    font-size: 17px;
+}
+
+
+.expense-info span {
+    font-weight: bold;
+}
+
+
+.expense-info small {
+    color: #777;
+}
+
+
+.expense-actions {
+    display: flex;
+    gap: 7px;
+}
+
+
+.edit-btn {
+    background: #555;
+}
+
+
+.delete-btn {
+    background: #d9534f;
+}
+
+
+.quick-stats {
+    margin-top: 20px;
+}
+
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f4f6f8;
+    padding: 15px;
+    border-radius: 7px;
+}
+
+
+.stat-icon {
+    font-size: 25px;
+}
+
+
+.stat-item p {
+    color: #777;
+}
+
+
+.stat-item strong {
+    font-size: 18px;
+}
+
+
+.empty-state {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+}
+
+
+.empty-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+}
+
+
+@media (max-width: 700px) {
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .expense-tools {
+        flex-direction: column;
+    }
+
+}
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card h1 {
+    margin-bottom: 10px;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-card input,
+.auth-card button {
+    padding: 12px;
+    font-size: 16px;
+}
+
+.auth-card button {
+    cursor: pointer;
+}
+
+#loginMessage {
+    overflow-wrap: anywhere;
+}
